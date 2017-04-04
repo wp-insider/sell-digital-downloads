@@ -35,7 +35,7 @@ For detailed documentation please visit the [WordPress Sell Digital Downloads](h
 
 = Get involved =
 
-Developers can contribute to the source code on the [Sell Digital Downloads GitHub Repository](https://github.com/wpcommerce/sell-digital-downloads).
+Developers can contribute to the source code on the [Sell Digital Downloads GitHub Repository](https://github.com/wp-insider/sell-digital-downloads).
 
 == Installation ==
 
