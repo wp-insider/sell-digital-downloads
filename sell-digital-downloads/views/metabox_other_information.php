@@ -1,5 +1,5 @@
 <?php
-if (!current_user_can('edit_post')) wp_die( __('You do not have sufficient permissions to access this page.') );
+if (!current_user_can('edit_posts')) wp_die( __('You do not have sufficient permissions to access this page.') );
 ?>
 
 <?php do_action( 'isell_product_metabox_other_information_before' ) ?>

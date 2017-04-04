@@ -1,6 +1,6 @@
 <div class="wrap">
 <div id="icon-options-general" class="icon32"><br></div><h2><?php echo __('Settings','isell'); ?></h2>
-<div class="update-nag">Please visit the <a target="_blank" href="https://wp-ecommerce.net/wordpress-isell-easily-sell-digital-downloads-from-your-wordpress-site-1916">WP iSell</a> documentation page for usage instructions.</div>
+<div class="update-nag">Please visit the <a target="_blank" href="https://wp-ecommerce.net/wordpress-isell-easily-sell-digital-downloads-from-your-wordpress-site-1916">WP iSell plugin</a> documentation page for usage instructions.</div>
 <?php if($debug_reset_notice != ''){
         if($debug_reset_notice == '1'){ ?>
             <div id="message" class="updated fade"><p><strong><?php echo __('Debug log file has been reset!'); ?></strong></p></div>
@@ -157,7 +157,7 @@
 		<option value="curl" <?php echo ($options['advanced']['use_fsockopen_or_curl']=='curl') ? 'selected':''; ?>>CURL</option>
 	</select>
 	<p class="description">
-		<?php echo __('If your host don\'t support both ask them to enable one for your site.','isell'); ?>
+		<?php echo __('If your host doesn\'t support any of the options from the dropdown then ask them to enable one for your site.','isell'); ?>
 	</p>
 </td>
 </tr>
@@ -171,7 +171,8 @@
 <ul>
     <li><a href="<?php echo ISELL_PLUGIN_URL.'/wp_isell_debug.log'; ?>" target="_blank">wp_isell_debug.log</a></li>
 </ul>
-<div class="submit"><input type="submit" name="wp_isell_reset_logfile" style="font-weight:bold; color:red" value="Reset Debug Log file"/> WP iSell log file is "reset" and timestamped with a log file reset message.</div>
+<input type="submit" name="wp_isell_reset_logfile" class="button" style="font-weight:bold; color:red" value="Reset Debug Log file"/>
+<p class="description">Use it to reset the log file.</p>
 </td></tr>
 
 </tbody>

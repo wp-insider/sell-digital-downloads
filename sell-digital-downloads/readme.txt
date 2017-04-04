@@ -1,10 +1,10 @@
 === Sell Digital Downloads ===
-Contributors: wpecommerce
+Contributors: wpecommerce, wp.insider
 Donate link: https://wp-ecommerce.net/wordpress-isell-easily-sell-digital-downloads-from-your-wordpress-site-1916
 Tags: sell digital products, sell downloads, sell download, sell products, ecommerce, commerce, paypal, paypal ipn, orders, sell photos, sell ebook, selling, e-downloads, e-store, eshop, download, downloads, digital downloads, e-commerce, wp ecommerce, sell videos  
 Requires at least: 3.0
 Tested up to: 4.7
-Stable tag: 2.2.3
+Stable tag: 2.2.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -60,6 +60,13 @@ Yes
 For screenshots please visit the [WordPress Sell Digital Downloads](https://wp-ecommerce.net/wordpress-isell-easily-sell-digital-downloads-from-your-wordpress-site-1916) plugin page
 
 == Changelog ==
+
+= 2.2.4 =
+* The plugin will automatically create the necessary pages (Download, Thanks, Errror) at activation. No need to create these pages manually anymore.
+* Removed deprecated function to fix the notice that was shown upon plugin activation.
+* All the different admin dashboard menu items are now under the one "iSell" main menu.
+* Fixed a warnig that was getting shown after editing a product.
+* Improved some help text and fixed some minor typos.
 
 = 2.2.3 =
 * Sell Digital Downloads is now compatible with WordPress 4.3.

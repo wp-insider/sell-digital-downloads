@@ -1,5 +1,5 @@
 <?php
-if (!current_user_can('edit_post')) wp_die( __('You do not have sufficient permissions to access this page.') );
+if (!current_user_can('edit_posts')) wp_die( __('You do not have sufficient permissions to access this page.') );
 ?>
 <table class="form-table">
   <input type="hidden" name="order_token" />
