@@ -61,11 +61,17 @@ For screenshots please visit the [WordPress Sell Digital Downloads](https://wp-e
 
 == Changelog ==
 
+= Next version =
+* Fixed typos in readme.txt.
+* Changed language textdomain from "isell" to "sell-digital-downloads".
+* Changed debug log filename from "wp_isell_debug.log" to "wp-isell-debug.txt".
+* Added "Custom Thanks Page URL" option for each product.
+
 = 2.2.4 =
-* The plugin will automatically create the necessary pages (Download, Thanks, Errror) at activation. No need to create these pages manually anymore.
+* The plugin will automatically create the necessary pages (Download, Thanks, Error) at activation. No need to create these pages manually anymore.
 * Removed deprecated function to fix the notice that was shown upon plugin activation.
 * All the different admin dashboard menu items are now under the one "iSell" main menu.
-* Fixed a warnig that was getting shown after editing a product.
+* Fixed a warning that was getting shown after editing a product.
 * Improved some help text and fixed some minor typos.
 
 = 2.2.3 =
