@@ -1,13 +1,13 @@
 <?php
 
 /*
-  Plugin Name: WordPress iSell - Sell Digital Downloads
-  Description: All in one plugin to sell your digital products and manage your orders from your WordPress site.
-  Author: wpecommerce, wp.insider
-  Version: 2.2.4
-  Author URI: https://wp-ecommerce.net/
-  Plugin URI: https://wp-ecommerce.net/wordpress-isell-easily-sell-digital-downloads-from-your-wordpress-site-1916
- */
+Plugin Name: WordPress iSell - Sell Digital Downloads
+Description: All in one plugin to sell your digital products and manage your orders from your WordPress site.
+Author: wpecommerce, wp.insider
+Version: 2.2.4
+Author URI: https://wp-ecommerce.net/
+Plugin URI: https://wp-ecommerce.net/wordpress-isell-easily-sell-digital-downloads-from-your-wordpress-site-1916
+*/
 
 define('iSell_Path', plugin_dir_path(__FILE__));
 define('iSell_Dir_Name', dirname(plugin_basename(__FILE__)));
@@ -147,9 +147,10 @@ Class WordPress_iSell {
 
         $isell_options = $this->default_options();
 
-        if (get_option('isell_options')) {
+        if (get_option('isell_options')){
             $isell_options = get_option('isell_options');
-        } else {
+        }
+        else{
             add_option('isell_options', $isell_options, '', 'yes');
         }
 
@@ -657,7 +658,6 @@ Class WordPress_iSell {
         $product_price = stripslashes($_POST['product_price']);
         $product_file_name = stripslashes($_POST['product_file_name']);
         $product_file_url = stripslashes($_POST['product_file_url']);
-        $product_thanks_page_url = stripslashes($_POST['product_thanks_page_url']);
 
         $product_thumbnail_url = stripslashes($_POST['product_thumbnail_url']);
 
@@ -687,7 +687,6 @@ Class WordPress_iSell {
         update_post_meta($post_id, 'product_name', $product_name);
         update_post_meta($post_id, 'product_file_name', $product_file_name);
         update_post_meta($post_id, 'product_file_url', $product_file_url);
-        update_post_meta($post_id, 'product_thanks_page_url', $product_thanks_page_url);
         update_post_meta($post_id, 'isell_simple_download_checkbox', $simpledloption);
 
         update_post_meta($post_id, 'product_thumbnail_url', $product_thumbnail_url);
@@ -846,29 +845,16 @@ Class WordPress_iSell {
                     $notify_url = admin_url('admin-ajax.php') . '?action=isell_paypal_ipn';
                     $notify_url = apply_filters('isell_notify_url', $notify_url);
                     $amount = number_format($price, 2);
+                    $thanks_page = $options['store']['thanks_page'];
 
-                    $thanks_page = get_post_meta($product_id, 'product_thanks_page_url', true);
-
-                    //PP API 'rm' option. 2 means if 'return' is specified, it would also send POST data to the page
-                    $rm = 2;
-                    //Check if product has custom Thanks page specified
-                    if (!empty($thanks_page)) {
-                        //If yes - we change 'rm' option to 1, which means do not send POST data to the 'return' url.
-                        //The reason why it is done is that some websites may behave unpredictable if some POST values are sent to them
-                        $rm = 1;
-                    } else {
-                        //If not - let's use global Thanks page
-                        $thanks_page = $options['store']['thanks_page'];
-                        if (is_numeric($thanks_page)) {
-                            $thanks_page = get_permalink($options['store']['thanks_page']);
-                        }
+                    if (is_numeric($thanks_page)){
+                        $thanks_page = get_permalink($options['store']['thanks_page']);
                     }
 
-
-
-                    if ($platform == 'sandbox') {
+                    if ($platform == 'sandbox'){
                         $url = 'https://www.sandbox.paypal.com/cgi-bin/webscr?';
-                    } else {
+                    }
+                    else {
                         $url = 'https://www.paypal.com/cgi-bin/webscr?';
                     }
 
@@ -884,7 +870,7 @@ Class WordPress_iSell {
                         'item_number' => (int) $product_id,
                         'notify_url' => $notify_url,
                         'return' => $thanks_page,
-                        'rm' => $rm,
+                        'rm' => 2,
                         'bn' => 'TipsandTricks_SP'
                     );
                     $parameters = apply_filters('isell_payment_gateway_parameters', $parameters);
