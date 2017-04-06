@@ -1188,14 +1188,14 @@ EOT;
 
         //Check if Product ID is set
         if ($params['id'] === false) {
-            return 'Product ID must be specified.';
+            return __('Product ID must be specified.', 'sell-digital-downloads');
         }
 
         $params['id'] = intval($params['id']);
 
-        //Check if product exists
-        if (get_post_status($params['id']) != 'publish') {
-            return 'Product doesn\'t exist.';
+        //Check if product exists and it's actually an isell product. This is to prevet users from selling actual WP posts and pages
+        if (get_post_status($params['id']) != 'publish' || get_post_type($params['id']) != 'isell-product') {
+            return __('Can\'t find product with specified id.', 'sell-digital-downloads');
         }
 
         $button_text = $params['button_text'] === false ? 'Buy Now' : $params['button_text'];
