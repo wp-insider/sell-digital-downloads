@@ -66,6 +66,7 @@ For screenshots please visit the [WordPress Sell Digital Downloads](https://wp-e
 * Changed language textdomain from "isell" to "sell-digital-downloads".
 * Changed debug log filename from "wp_isell_debug.log" to "wp-isell-debug.txt".
 * Added "Custom Thanks Page URL" option for each product.
+* Added [isell_buy_now] shortcode. Usage instructions are available on Edit Product page.
 
 = 2.2.4 =
 * The plugin will automatically create the necessary pages (Download, Thanks, Error) at activation. No need to create these pages manually anymore.

@@ -35,6 +35,25 @@ if (!current_user_can('edit_posts')) wp_die( __('You do not have sufficient perm
         </td>
     </tr>
     <tr valign="top">
+       <th scope="row"><strong><label for="product_button_shortcode" id="product_button_shortcode_label"><?php echo __('Button Shortcode:','sell-digital-downloads'); ?></label><strong></th>
+       <td>
+          <input type="text" disabled value="[isell_buy_now id=&quot;<?php echo $post_id; ?>&quot;]" id="product_button_shortcode" name="product_button_shortcode" min="0" required  class="regular-text disabled"/>
+          <p class="description">
+              <?php echo __('You can use this shortcode to show Buy Now button for this product. Just copy and paste it on any page you want the button to appear on.','sell-digital-downloads'); ?>
+              <br />
+              <?php echo __('You can customize button using following shortcode parameters:','sell-digital-downloads'); ?>
+              <br />
+              <?php echo __('button_text="Buy Now": lets you specify custom text displayed on the button.','sell-digital-downloads'); ?>
+              <br />
+              <?php echo __('new_window="1": opens PayPal payment in new window on button click.','sell-digital-downloads'); ?>
+              <br />
+              <?php echo __('class="my-css-class": specified CSS class would be applied to the button for styling purposes.','sell-digital-downloads'); ?>
+              <br />
+              <?php echo __('Example: [isell_buy_now id="'. $post_id.'" button_text="Buy Me" new_window="1"]','sell-digital-downloads'); ?>
+          </p>
+        </td>
+    </tr>   
+    <tr valign="top">
        <th scope="row"><strong><label for="product_thanks_page_url" id="product_thanks_page_url_label"><?php echo __('Custom Thanks Page URL:','sell-digital-downloads'); ?></label><strong></th>
        <td>
           <input type="text" value="<?php echo get_post_meta($post_id,'product_thanks_page_url',true); ?>" id="product_thanks_page_url" name="product_thanks_page_url" min="0" class="regular-text"/>

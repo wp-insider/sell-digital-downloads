@@ -95,6 +95,9 @@ Class WordPress_iSell {
         //isell download page shortcode
         add_shortcode('wp_isell_download', array($this, 'wp_isell_download_display'));
 
+        //isell_buy_now shotcode
+        add_shortcode('isell_buy_now', array($this, 'wp_isell_buy_now_handler'));
+
         //to make shortcode redirects work using ob_start at the start of init
         add_action('init', array($this, 'init_ob_start'));
 
@@ -1172,6 +1175,42 @@ EOT;
         if ($no_grid == '1') {
             $output .= '<div class="isell_clear_float"></div>';
         }
+        return $output;
+    }
+
+    function wp_isell_buy_now_handler($atts) {
+        $params = shortcode_atts(array(
+            'id' => false,
+            'button_text' => false,
+            'new_window' => false,
+            'class' => false,
+                ), $atts);
+
+        //Check if Product ID is set
+        if ($params['id'] === false) {
+            return 'Product ID must be specified.';
+        }
+
+        $params['id'] = intval($params['id']);
+
+        //Check if product exists
+        if (get_post_status($params['id']) != 'publish') {
+            return 'Product doesn\'t exist.';
+        }
+
+        $button_text = $params['button_text'] === false ? 'Buy Now' : $params['button_text'];
+
+        $new_window = $params['new_window'] == '1' ? ' target="blank"' : '';
+
+        $class = ($params['class'] === false ? '' : ' class="' . $params['class'] . '"');
+
+        $output = '';
+        $output .= '<div>';
+        $output .= '<a href="' . isell_generate_product_url($params['id']) . '"' . $new_window . '>';
+        $output .= '<button' . $class . '><span>' . $button_text . '</span></button>';
+        $output .= '</a>';
+        $output .= '</div>';
+
         return $output;
     }
 
