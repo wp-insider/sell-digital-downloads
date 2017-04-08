@@ -27,17 +27,26 @@ if (!current_user_can('edit_posts')) wp_die( __('You do not have sufficient perm
             <p class="description"><?php echo __('Enter the URL of your product thumbnail file or upload one','sell-digital-downloads'); ?></p>
         </td>
     </tr>
+    
+    <tr valign="top">
+       <th scope="row"><strong><label for="product_thanks_page_url" id="product_thanks_page_url_label"><?php echo __('Custom Thanks Page URL:','sell-digital-downloads'); ?></label><strong></th>
+       <td>
+          <input type="text" value="<?php echo get_post_meta($post_id,'product_thanks_page_url',true); ?>" id="product_thanks_page_url" name="product_thanks_page_url" min="0" class="regular-text"/>
+          <p class="description"><?php echo __('URL of the page customers will be sent to after successful purchase. Leave this field empty to use default page specified in settings.','sell-digital-downloads'); ?></p>
+        </td>
+    </tr>
+    
     <tr valign="top">
        <th scope="row"><strong><label for="product_url" id="product_url_label"><?php echo __('Buy Now URL:','sell-digital-downloads'); ?></label><strong></th>
        <td>
-          <input type="text" disabled value="<?php echo isell_generate_product_url($post_id); ?>" id="product_url" name="product_url" min="0" required  class="regular-text disabled"/>
+          <?php echo isell_generate_product_url($post_id); ?>
           <p class="description"><?php echo __('This link can be used to sell this item. Use this link in your call to action button.','sell-digital-downloads'); ?></p>
         </td>
     </tr>
     <tr valign="top">
        <th scope="row"><strong><label for="product_button_shortcode" id="product_button_shortcode_label"><?php echo __('Button Shortcode:','sell-digital-downloads'); ?></label><strong></th>
        <td>
-          <input type="text" disabled value="[isell_buy_now id=&quot;<?php echo $post_id; ?>&quot;]" id="product_button_shortcode" name="product_button_shortcode" min="0" required  class="regular-text disabled"/>
+          [isell_buy_now id=&quot;<?php echo $post_id; ?>&quot;]
           <p class="description">
               <?php echo __('You can use this shortcode to show Buy Now button for this product. Just copy and paste it on any page you want the button to appear on.','sell-digital-downloads'); ?>
               <br />
@@ -46,20 +55,9 @@ if (!current_user_can('edit_posts')) wp_die( __('You do not have sufficient perm
               <?php echo __('button_text="Buy Now": lets you specify custom text displayed on the button.','sell-digital-downloads'); ?>
               <br />
               <?php echo __('new_window="1": opens PayPal payment in new window on button click.','sell-digital-downloads'); ?>
-              <br />
-              <?php echo __('class="my-css-class": specified CSS class would be applied to the button for styling purposes.','sell-digital-downloads'); ?>
-              <br />
-              <?php echo __('Example: [isell_buy_now id="'. $post_id.'" button_text="Buy Me" new_window="1"]','sell-digital-downloads'); ?>
           </p>
         </td>
-    </tr>   
-    <tr valign="top">
-       <th scope="row"><strong><label for="product_thanks_page_url" id="product_thanks_page_url_label"><?php echo __('Custom Thanks Page URL:','sell-digital-downloads'); ?></label><strong></th>
-       <td>
-          <input type="text" value="<?php echo get_post_meta($post_id,'product_thanks_page_url',true); ?>" id="product_thanks_page_url" name="product_thanks_page_url" min="0" class="regular-text"/>
-          <p class="description"><?php echo __('URL of the page customers will be sent to after successful purchase.<br />Leave this field empty to use default page specified in settings.','sell-digital-downloads'); ?></p>
-        </td>
-    </tr>    
+    </tr>
 
 </table>
 

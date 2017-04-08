@@ -4,7 +4,7 @@ Donate link: https://wp-ecommerce.net/wordpress-isell-easily-sell-digital-downlo
 Tags: sell digital products, sell downloads, sell download, sell products, ecommerce, commerce, paypal, paypal ipn, orders, sell photos, sell ebook, selling, e-downloads, e-store, eshop, download, downloads, digital downloads, e-commerce, wp ecommerce, sell videos  
 Requires at least: 3.0
 Tested up to: 4.7
-Stable tag: 2.2.4
+Stable tag: 2.2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -61,12 +61,12 @@ For screenshots please visit the [WordPress Sell Digital Downloads](https://wp-e
 
 == Changelog ==
 
-= Next version =
+= TODO 2.2.5 =
+* Added [isell_buy_now] shortcode. You can use this shortcode to put a buy now button for a product on any WordPress post or page.
+* Changed debug log filename from "wp_isell_debug.log" to "wp-isell-debug.txt".
 * Fixed typos in readme.txt.
 * Changed language textdomain from "isell" to "sell-digital-downloads".
-* Changed debug log filename from "wp_isell_debug.log" to "wp-isell-debug.txt".
 * Added "Custom Thanks Page URL" option for each product.
-* Added [isell_buy_now] shortcode. Usage instructions are available on Edit Product page.
 
 = 2.2.4 =
 * The plugin will automatically create the necessary pages (Download, Thanks, Error) at activation. No need to create these pages manually anymore.
