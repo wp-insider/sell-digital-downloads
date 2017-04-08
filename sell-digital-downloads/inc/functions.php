@@ -332,7 +332,7 @@ function isell_ignore_notice() {
 
 //language translation
 function isell_load_plugin_textdomain() {
-    load_plugin_textdomain('isell', false, dirname(plugin_basename(__FILE__)) . '/languages/');
+    load_plugin_textdomain('sell-digital-downloads', false, dirname(plugin_basename(__FILE__)) . '/languages/');
 }
 
 add_action('plugins_loaded', 'isell_load_plugin_textdomain');
