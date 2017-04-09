@@ -61,12 +61,13 @@ For screenshots please visit the [WordPress Sell Digital Downloads](https://wp-e
 
 == Changelog ==
 
-= TODO 2.2.5 =
+= 2.2.5 =
+* Added "Custom Thanks Page URL" option for each product.
 * Added [isell_buy_now] shortcode. You can use this shortcode to put a buy now button for a product on any WordPress post or page.
 * Changed debug log filename from "wp_isell_debug.log" to "wp-isell-debug.txt".
 * Fixed typos in readme.txt.
 * Changed language textdomain from "isell" to "sell-digital-downloads".
-* Added "Custom Thanks Page URL" option for each product.
+* Changed the admin dashboard menu icon to use a cart icon.
 
 = 2.2.4 =
 * The plugin will automatically create the necessary pages (Download, Thanks, Error) at activation. No need to create these pages manually anymore.

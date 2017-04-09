@@ -147,9 +147,8 @@ function isell_generate_order_title($order_id = NULL, $args = NULL, $title_forma
 
 function isell_settings_page() {
     $menu_slug = 'isell_settings_page';
-    $icon_url = plugins_url() . '/' . iSell_Dir_Name . '/images/menu-icon.png';
 
-    add_menu_page(__('iSell Settings', 'isell'), 'iSell', 'manage_options', $menu_slug, 'isell_settings_page_view', $icon_url);
+    add_menu_page(__('iSell Settings', 'isell'), 'iSell', 'manage_options', $menu_slug, 'isell_settings_page_view', 'dashicons-cart');
     add_submenu_page($menu_slug, __('iSell Settings', 'isell'), 'Settings', 'manage_options', $menu_slug, NULL);
     add_submenu_page($menu_slug, __('Products', 'isell'), 'Products', 'manage_options', 'edit.php?post_type=isell-product', NULL);
     add_submenu_page($menu_slug, __('Orders', 'isell'), 'Orders', 'manage_options', 'edit.php?post_type=isell-order', NULL);
