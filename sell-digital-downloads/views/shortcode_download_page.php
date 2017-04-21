@@ -8,7 +8,7 @@
 
 <?php if ( $auto_start ): ?>
 
-<iframe width="1" height="1" frameborder="0" src="<?php echo $download_link ?>"></iframe>
+<script>window.location="<?php echo $download_link ?>";</script>
 
 <?php endif; ?>
 
