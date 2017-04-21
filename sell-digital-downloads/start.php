@@ -788,6 +788,23 @@ Class WordPress_iSell {
             $file_name = $file;
         }
         do_action('isell_product_download_validation_complete', $order_id, $product_id);
+
+        $hook_result = apply_filters('isell_process_file_url', get_post_meta($product_id, 'product_file_url', true));
+
+        if (is_array($hook_result)) {
+            //some addon catched the hook, let's check its reply
+            if ($hook_result['code'] === true) {
+                //if the hook was successful, we should have a link for file download in ['file']
+                $product_info['downloads'] += 1;
+                update_post_meta($order_id, 'product_info', $product_info);
+                header("Location: " . $hook_result['file']);
+                exit;
+            } else {
+                //some error occured, let's display the message
+                isell_error_redirect($hook_result['code'], $error_page);
+                die();
+            }
+        }
         //testing
         if ($simple_download) {
             $product_info['downloads'] += 1;
