@@ -11,9 +11,9 @@ if ($platform == 'sandbox')
 //$listener->use_ssl = false; 
 //set it to true to use fsockopen
 $listener->use_curl = false;
-if ($options['advanced']['use_fsockopen_or_curl'] == 'curl')
+if ($options['advanced']['use_fsockopen_or_curl'] == 'curl'){
     $listener->use_curl = true;
-
+}
 try {
     //verify that ipn is valid
     $listener->requirePostMethod();
@@ -53,7 +53,7 @@ if ($verified)
                         {
                             $get_txn_id_query = $wpdb->prepare("SELECT post_id FROM  $wpdb->postmeta WHERE  meta_value =  %s AND meta_key = %s", $txn_id, 'txn_id');
                             $order_id = $wpdb->get_var($get_txn_id_query);
-                            $product_id = $wpdb->esc_sql($_POST['item_number']);
+                            $product_id = esc_sql($_POST['item_number']);
                             wp_isell_write_debug('Order ID: ' . $order_id . ", Product ID: " . $product_id, true);
                             if ($order_id) 
                             {
@@ -160,11 +160,11 @@ if ($verified)
             {
                 wp_isell_write_debug('Merchant email: '.$options['paypal']['email'].', Receiver email: '.$_POST['receiver_email'], true);
                 global $wpdb;
-                $txn_id = $wpdb->esc_sql($_POST['txn_id']);
+                $txn_id = esc_sql($_POST['txn_id']);
                 wp_isell_write_debug('Transaction ID: ' . $txn_id, true);
                 $txn_id_query = $wpdb->prepare("SELECT post_id FROM  $wpdb->postmeta WHERE  meta_value =  %s AND meta_key = %s", $txn_id, 'txn_id');
                 $order_id = $wpdb->get_var($txn_id_query);
-                $product_id = $wpdb->esc_sql($_POST['item_number']);
+                $product_id = esc_sql($_POST['item_number']);
                 wp_isell_write_debug('Order ID: ' . $order_id . ", Product ID: " . $product_id, true);
                 if ($order_id) 
                 {
@@ -193,4 +193,3 @@ if ($verified)
         }//end payment status refunded 
     }
 }
-?>

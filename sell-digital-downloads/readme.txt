@@ -62,8 +62,9 @@ For screenshots please visit the [WordPress Sell Digital Downloads](https://wp-e
 == Changelog ==
 
 = 2.2.6 =
-* Added addons support.
 * Replaced deprecated <iframe> redirect with javascript redirect when user is downloading file.
+* Added a new action hook so addons can intercept the download request and do additional tasks.
+* Replaced the escape function with esc_sql function.
 
 = 2.2.5 =
 * Added "Custom Thanks Page URL" option for each product.
