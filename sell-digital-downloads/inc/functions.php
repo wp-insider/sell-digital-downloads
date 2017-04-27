@@ -183,6 +183,7 @@ if (!function_exists('isell_save_settings')) {
             'thanks_page' => $_POST['thanks_page'],
             'download_page' => $_POST['download_page']
         );
+        $_POST["wp_isell_enable_debug"]=isset($_POST["wp_isell_enable_debug"]) ? $_POST["wp_isell_enable_debug"] : '';
         $options['file_management']['max_downloads'] = (int) $_POST['max_downloads'];
         $options['advanced']['use_fsockopen_or_curl'] = $_POST['use_fsockopen_or_curl'];
         $options['advanced']['wp_isell_enable_debug'] = $_POST["wp_isell_enable_debug"] == '1' ? 1 : '';

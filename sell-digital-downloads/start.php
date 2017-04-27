@@ -4,7 +4,7 @@
   Plugin Name: WordPress iSell - Sell Digital Downloads
   Description: All in one plugin to sell your digital products and manage your orders from your WordPress site.
   Author: wpecommerce, wp.insider
-  Version: 2.2.5
+  Version: 2.2.6
   Author URI: https://wp-ecommerce.net/
   Plugin URI: https://wp-ecommerce.net/wordpress-isell-easily-sell-digital-downloads-from-your-wordpress-site-1916
  */
@@ -132,7 +132,7 @@ Class WordPress_iSell {
 
     function constants() {
         //isell version
-        define('ISELL_VERSION', '2.2.3');
+        define('ISELL_VERSION', '2.2.6');
         define('ISELL_PLUGIN_URL', plugins_url('', __FILE__));
         //error_codes
         define('ISELL_INVALID_TXN_ID', 1);
@@ -788,6 +788,23 @@ Class WordPress_iSell {
             $file_name = $file;
         }
         do_action('isell_product_download_validation_complete', $order_id, $product_id);
+
+        $hook_result = apply_filters('isell_process_file_url', get_post_meta($product_id, 'product_file_url', true));
+
+        if (is_array($hook_result)) {
+            //some addon catched the hook, let's check its reply
+            if ($hook_result['code'] === true) {
+                //if the hook was successful, we should have a link for file download in ['file']
+                $product_info['downloads'] += 1;
+                update_post_meta($order_id, 'product_info', $product_info);
+                header("Location: " . $hook_result['file']);
+                exit;
+            } else {
+                //some error occured, let's display the message
+                isell_error_redirect($hook_result['code'], $error_page);
+                die();
+            }
+        }
         //testing
         if ($simple_download) {
             $product_info['downloads'] += 1;

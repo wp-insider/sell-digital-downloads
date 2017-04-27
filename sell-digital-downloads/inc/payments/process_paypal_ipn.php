@@ -43,7 +43,7 @@ if ($verified)
                 {
                     wp_isell_write_debug('Store currency: '.$options['store']['currency'].', Currency used for the payment: '.$_POST['mc_currency'], true);
                     global $wpdb;
-                    $txn_id = $wpdb->escape($_POST['txn_id']);
+                    $txn_id = esc_sql($_POST['txn_id']);
                     wp_isell_write_debug('Transaction ID: ' . $txn_id, true);
                     $txn_id_query = $wpdb->prepare("SELECT * FROM  $wpdb->postmeta WHERE  meta_value =  %s AND meta_key = %s", $txn_id, 'txn_id');
                     if ($wpdb->query($txn_id_query) >= 1) 
@@ -53,7 +53,7 @@ if ($verified)
                         {
                             $get_txn_id_query = $wpdb->prepare("SELECT post_id FROM  $wpdb->postmeta WHERE  meta_value =  %s AND meta_key = %s", $txn_id, 'txn_id');
                             $order_id = $wpdb->get_var($get_txn_id_query);
-                            $product_id = $wpdb->escape($_POST['item_number']);
+                            $product_id = $wpdb->esc_sql($_POST['item_number']);
                             wp_isell_write_debug('Order ID: ' . $order_id . ", Product ID: " . $product_id, true);
                             if ($order_id) 
                             {
@@ -160,11 +160,11 @@ if ($verified)
             {
                 wp_isell_write_debug('Merchant email: '.$options['paypal']['email'].', Receiver email: '.$_POST['receiver_email'], true);
                 global $wpdb;
-                $txn_id = $wpdb->escape($_POST['txn_id']);
+                $txn_id = $wpdb->esc_sql($_POST['txn_id']);
                 wp_isell_write_debug('Transaction ID: ' . $txn_id, true);
                 $txn_id_query = $wpdb->prepare("SELECT post_id FROM  $wpdb->postmeta WHERE  meta_value =  %s AND meta_key = %s", $txn_id, 'txn_id');
                 $order_id = $wpdb->get_var($txn_id_query);
-                $product_id = $wpdb->escape($_POST['item_number']);
+                $product_id = $wpdb->esc_sql($_POST['item_number']);
                 wp_isell_write_debug('Order ID: ' . $order_id . ", Product ID: " . $product_id, true);
                 if ($order_id) 
                 {
