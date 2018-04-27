@@ -1,6 +1,6 @@
 <?php
 if (!current_user_can('edit_posts')) wp_die( __('You do not have sufficient permissions to access this page.') );
-
+wp_enqueue_media();
 ?>
 
 <table class="form-table">
@@ -23,8 +23,9 @@ if (!current_user_can('edit_posts')) wp_die( __('You do not have sufficient perm
         <th scope="row"><strong><label for="product_thumbnail_url"><?php echo __('Thumbnail:','sell-digital-downloads'); ?></label><strong></th>
         <td>
             <input type="text" value="<?php echo get_post_meta($post_id,'product_thumbnail_url',true); ?>" id="product_thumbnail_url" name="product_thumbnail_url" size="90" />
-            <input class="button" id="product_thumbnail_upload_button" type="button" value="<?php echo __('Upload File','sell-digital-downloads'); ?>" />
-            <p class="description"><?php echo __('Enter the URL of your product thumbnail file or upload one','sell-digital-downloads'); ?></p>
+	    <br /><br />
+            <input class="button-primary" id="product_thumbnail_upload_button" type="button" value="<?php echo __('Select image','sell-digital-downloads'); ?>" />
+            <p class="description"><?php echo __('Enter the URL of your product thumbnail file or select one from Media Library','sell-digital-downloads'); ?></p>
         </td>
     </tr>
     
@@ -66,3 +67,27 @@ if (!current_user_can('edit_posts')) wp_die( __('You do not have sufficient perm
   display:none;
 }
 </style>
+<script>
+    jQuery(document).ready(function ($) {
+    var selectFileFrame;
+    // Run media uploader for thumbnail upload
+    $('#product_thumbnail_upload_button').click(function (e) {
+        e.preventDefault();
+        selectFileFrame = wp.media({
+            title: '<?php echo esc_js(__("Select image",'sell-digital-downloads'));?>',
+            button: {
+                text: '<?php echo esc_js(__("Insert",'sell-digital-downloads'));?>',
+            },
+            multiple: false,
+	    library: {type: 'image'},
+        });
+        selectFileFrame.open();
+        selectFileFrame.on('select', function () {
+            var attachment = selectFileFrame.state().get('selection').first().toJSON();
+
+            $('#product_thumbnail_url').val(attachment.url);
+        });
+        return false;
+    });
+});
+</script>

@@ -1,6 +1,6 @@
 <?php
 if (!current_user_can('edit_posts')) wp_die( __('You do not have sufficient permissions to access this page.') );
-
+wp_enqueue_media();
 ?>
 <table class="form-table">
 	<input type="hidden" name="product_token" />
@@ -25,9 +25,33 @@ if (!current_user_can('edit_posts')) wp_die( __('You do not have sufficient perm
         <th scope="row"><strong><label for="product_file_url"><?php echo __('File URL:','sell-digital-downloads'); ?></label><strong></th>
         <td>
             <input type="text" value="<?php echo get_post_meta($post_id,'product_file_url',true); ?>" id="product_file_url" name="product_file_url" size="90" />
-            <input class="button" id="product_file_upload_button" type="button" value="<?php echo __('Upload File','sell-digital-downloads'); ?>" />
-            <p class="description"><?php echo __('Enter the URL of your downloadable file or upload one','sell-digital-downloads'); ?></p>
+	    <br /><br />
+            <input class="button-primary" id="product_file_upload_button" type="button" value="<?php echo __('Select file','sell-digital-downloads'); ?>" />
+            <p class="description"><?php echo __('Enter the URL of your downloadable file or select one from Media Library','sell-digital-downloads'); ?></p>
         </td>
     </tr>
 
 </table>
+<script>
+    jQuery(document).ready(function ($) {
+    var selectFileFrame;
+    // Run media uploader for thumbnail upload
+    $('#product_file_upload_button').click(function (e) {
+        e.preventDefault();
+        selectFileFrame = wp.media({
+            title: '<?php echo esc_js(__("Select file",'sell-digital-downloads'));?>',
+            button: {
+                text: '<?php echo esc_js(__("Insert",'sell-digital-downloads'));?>',
+            },
+            multiple: false
+        });
+        selectFileFrame.open();
+        selectFileFrame.on('select', function () {
+            var attachment = selectFileFrame.state().get('selection').first().toJSON();
+
+            $('#product_file_url').val(attachment.url);
+        });
+        return false;
+    });
+    });
+</script>

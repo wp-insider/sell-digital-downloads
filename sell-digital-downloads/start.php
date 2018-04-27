@@ -324,8 +324,6 @@ Class WordPress_iSell {
         if (!empty($post) && $post->post_type == "isell-product") {
             wp_enqueue_script('media-upload');
             wp_enqueue_script('thickbox');
-            wp_register_script('wpisellmedia-upload', plugins_url('js/wpisell_media_handler.js', __FILE__), array('jquery', 'media-upload', 'thickbox'));
-            wp_enqueue_script('wpisellmedia-upload');
         }
         //these scripts are only added to the admin screen
         wp_enqueue_style('isell-all.css', plugins_url('css/all.css', __FILE__), array(), ISELL_VERSION);
